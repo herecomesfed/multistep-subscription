@@ -1,21 +1,38 @@
-// import { useState } from "react";
+import { useState } from "react";
 import Container from "../components/Container";
 import Heading from "../components/Heading";
 import OptionsContainer from "../components/OptionsContainer";
 import Switcher from "../components/Switcher";
 import { plansData } from "../data";
-console.log(plansData);
+
 export default function ChoosePlan() {
-  // const [selectedPlan, setSelectedPlan] = useState();
+  const [plans, setPlans] = useState(plansData);
+
+  function handleSelectPlan(name: string) {
+    console.log("Hello");
+    const updatedPlans = plans.map((plan) => {
+      if (plan.name === name) {
+        return { ...plan, selected: true };
+      }
+      return { ...plan, selected: false };
+    });
+    console.log(updatedPlans);
+    setPlans(updatedPlans);
+  }
+
   return (
     <>
       <Heading>Select your plan</Heading>
       <p>You have the option of monthly or yearly billing.</p>
       <Container>
         <ul className="md:flex md:justify-center gap-3">
-          {plansData.map((plan) => {
+          {plans.map((plan) => {
             return (
-              <OptionsContainer key={plan.name}>
+              <OptionsContainer
+                selected={plan.selected}
+                onClick={() => handleSelectPlan(plan.name)}
+                key={plan.name}
+              >
                 <li>
                   <div className="flex md:flex-col gap-3">
                     <img

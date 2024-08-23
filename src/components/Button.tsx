@@ -16,7 +16,7 @@ export default function Button({
       className: `px-3 py-2 ${
         hasBg ? "bg-marine-blue text-white" : "text-cool-gray"
       }`,
-      onClick,
+      onClick: onClick,
     },
     children
   );

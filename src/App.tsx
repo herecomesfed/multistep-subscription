@@ -15,7 +15,7 @@ import Checkout from "./pages/Checkout";
 import Bottombar from "./components/Bottombar";
 
 // Data
-// import { plansData } from "./plansData";
+
 export default function App() {
   const stages = [
     {
