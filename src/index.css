@@ -1,0 +1,36 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .mx-breakout {
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+  }
+  .clean-breakout {
+    width: 33.333%;
+    position: static;
+    margin: 0;
+  }
+}
+
+@layer base {
+  html {
+    @apply bg-body-blue;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply text-marine-blue;
+  }
+  p {
+    @apply text-cool-gray;
+  }
+}
