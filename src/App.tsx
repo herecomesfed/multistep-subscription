@@ -13,6 +13,7 @@ import Checkout from "./pages/Checkout";
 
 // Components
 import Bottombar from "./components/Bottombar";
+import { DataProvider } from "./context/DataContext";
 
 // Data
 
@@ -54,18 +55,20 @@ export default function App() {
           <Navbar stages={stages} />
           <section className="md:w-7/12 md:p-10 bg-white shadow-lg md:shadow-none shadow-neutral-200">
             <div className="relative wrapper p-5 -mt-10 z-10 rounded-lg md:mt-0">
-              <Routes>
-                <Route index element={<Navigate to="/your-info" />} />
-                {stages.map((stage) => {
-                  return (
-                    <Route
-                      key={stage.id}
-                      path={stage.path}
-                      element={stage.component}
-                    />
-                  );
-                })}
-              </Routes>
+              <DataProvider>
+                <Routes>
+                  <Route index element={<Navigate to="/your-info" />} />
+                  {stages.map((stage) => {
+                    return (
+                      <Route
+                        key={stage.id}
+                        path={stage.path}
+                        element={stage.component}
+                      />
+                    );
+                  })}
+                </Routes>
+              </DataProvider>
             </div>
             <Bottombar stages={stages} />
           </section>

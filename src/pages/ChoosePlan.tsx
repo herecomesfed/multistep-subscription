@@ -1,12 +1,20 @@
-import { useState } from "react";
+import { useContext } from "react";
 import Container from "../components/Container";
 import Heading from "../components/Heading";
 import OptionsContainer from "../components/OptionsContainer";
 import Switcher from "../components/Switcher";
-import { plansData } from "../data";
+import {
+  DataContext,
+  contextTypes,
+  plansDataTypes,
+} from "../context/DataContext";
 
 export default function ChoosePlan() {
-  const [plans, setPlans] = useState(plansData);
+  const { plans, setPlans, setSelectedPlan } = useContext(DataContext) as {
+    plans: contextTypes["plans"];
+    setPlans: contextTypes["setPlans"];
+    setSelectedPlan: contextTypes["setSelectedPlan"];
+  };
 
   function handleSelectPlan(name: string) {
     console.log("Hello");
@@ -18,15 +26,15 @@ export default function ChoosePlan() {
     });
     console.log(updatedPlans);
     setPlans(updatedPlans);
+    setSelectedPlan(updatedPlans.filter((plan) => plan.selected));
   }
-
   return (
     <>
       <Heading>Select your plan</Heading>
       <p>You have the option of monthly or yearly billing.</p>
       <Container>
         <ul className="md:flex md:justify-center gap-3">
-          {plans.map((plan) => {
+          {plans.map((plan: plansDataTypes) => {
             return (
               <OptionsContainer
                 selected={plan.selected}

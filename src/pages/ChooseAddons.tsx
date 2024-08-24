@@ -1,12 +1,15 @@
-import { useState } from "react";
+import { useContext } from "react";
 import Container from "../components/Container";
 import Heading from "../components/Heading";
 import OptionsContainer from "../components/OptionsContainer";
 
-import { addonsData } from "../data";
+import { contextTypes, DataContext } from "../context/DataContext";
 
 export default function ChooseAddons() {
-  const [data, setData] = useState(addonsData);
+  const { data, setData } = useContext(DataContext) as {
+    data: contextTypes["data"];
+    setData: contextTypes["setData"];
+  };
 
   function handleSelectAddon(name: string) {
     const updatedAddons = data.map((addon) => {
