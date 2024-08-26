@@ -57,3 +57,26 @@ export const addonsData = [
     selected: false,
   },
 ];
+
+// Pricing Labels Types
+export interface pricingLabelsTypes {
+  monthly: {
+    shortLabel: string;
+    longLabel: string;
+  };
+  yearly: {
+    shortLabel: string;
+    longLabel: string;
+  };
+}
+
+export const pricingLabels = {
+  monthly: {
+    longLabel: "Monthly",
+    shortLabel: "mo",
+  },
+  yearly: {
+    longLabel: "Yearly",
+    shortLabel: "yr",
+  },
+};

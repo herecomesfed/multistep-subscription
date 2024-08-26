@@ -5,7 +5,7 @@ export default function Button({
   hasBg = true,
   onClick,
 }: {
-  children: string;
+  children: string | JSX.Element;
   element?: "a" | "button";
   hasBg?: boolean;
   onClick?: () => void;
@@ -13,8 +13,8 @@ export default function Button({
   const ButtonTag = createElement(
     element === "button" ? "button" : "a",
     {
-      className: `px-3 py-2 ${
-        hasBg ? "bg-marine-blue text-white" : "text-cool-gray"
+      className: `${
+        hasBg ? "bg-marine-blue text-white px-3 py-2" : "text-cool-gray"
       }`,
       onClick: onClick,
     },

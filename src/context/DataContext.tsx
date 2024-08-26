@@ -12,20 +12,6 @@ export interface plansDataTypes {
   selected: boolean;
 }
 
-// export interface plansType {
-//   plans: plansDataTypes[];
-//   setPlans: plansDataTypes[];
-// }
-
-export interface contextTypes {
-  plans: plansDataTypes[];
-  setPlans: React.Dispatch<React.SetStateAction<plansDataTypes[]>>;
-  selectedPlan: plansDataTypes[];
-  setSelectedPlan: React.Dispatch<React.SetStateAction<plansDataTypes[]>>;
-  data: addonsDataTypes[];
-  setData: React.Dispatch<React.SetStateAction<addonsDataTypes[]>>;
-}
-
 // Addons Types
 export interface addonsDataTypes {
   name: string;
@@ -37,21 +23,56 @@ export interface addonsDataTypes {
   selected: boolean;
 }
 
-// export interface addonsTypes {
-//   data: addonsDataTypes[];
-//   setData: addonsDataTypes[];
+// Pricing Labels Types
+// export interface pricingLabelsTypes {
+//   monthly: {
+//     shortLabel: string;
+//     longLabel: string;
+//   };
+//   yearly: {
+//     shortLabel: string;
+//     longLabel: string;
+//   };
 // }
+
+// Plans Pricing Types for bracket notation
+export interface pricingTypes {
+  monthly: number;
+  yearly: number;
+}
+
+// All Context Props Types
+export interface contextTypes {
+  plans: plansDataTypes[];
+  setPlans: React.Dispatch<React.SetStateAction<plansDataTypes[]>>;
+  selectedPlan: plansDataTypes;
+  data: addonsDataTypes[];
+  setData: React.Dispatch<React.SetStateAction<addonsDataTypes[]>>;
+  selectedAddons: addonsDataTypes[];
+  billingType: string;
+  setBillingType: React.Dispatch<React.SetStateAction<string>>;
+  isChecked: boolean;
+  setIsChecked: React.Dispatch<React.SetStateAction<boolean>>;
+}
 
 const DataContext = createContext<contextTypes | null>(null);
 
 function DataProvider({ children }: { children: ReactNode }) {
   // Plans state for Choose Plans Page
   const [plans, setPlans] = useState(plansData);
-  const [selectedPlan, setSelectedPlan] = useState(
-    plansData.filter((plan) => plan.selected)
-  );
+  const selectedPlan = plans.filter((plan) => plan.selected)[0];
+
   // Addons State for Choose Addons page
   const [data, setData] = useState(addonsData);
+  const selectedAddons = data.filter((addon) => addon.selected);
+
+  // Billing type
+  // 1. Monthly (Default)
+  // 2. Yearly
+
+  const [billingType, setBillingType] = useState("monthly");
+  // BillingType Checkbox Control Value
+  const [isChecked, setIsChecked] = useState(false);
 
   return (
     <DataContext.Provider
@@ -59,9 +80,13 @@ function DataProvider({ children }: { children: ReactNode }) {
         plans,
         setPlans,
         selectedPlan,
-        setSelectedPlan,
         data,
         setData,
+        selectedAddons,
+        billingType,
+        setBillingType,
+        isChecked,
+        setIsChecked,
       }}
     >
       {children}

@@ -7,17 +7,18 @@ import {
   DataContext,
   contextTypes,
   plansDataTypes,
+  pricingTypes,
 } from "../context/DataContext";
+import { pricingLabels, pricingLabelsTypes } from "../data";
 
 export default function ChoosePlan() {
-  const { plans, setPlans, setSelectedPlan } = useContext(DataContext) as {
+  const { plans, setPlans, billingType } = useContext(DataContext) as {
     plans: contextTypes["plans"];
     setPlans: contextTypes["setPlans"];
-    setSelectedPlan: contextTypes["setSelectedPlan"];
+    billingType: contextTypes["billingType"];
   };
 
   function handleSelectPlan(name: string) {
-    console.log("Hello");
     const updatedPlans = plans.map((plan) => {
       if (plan.name === name) {
         return { ...plan, selected: true };
@@ -26,7 +27,6 @@ export default function ChoosePlan() {
     });
     console.log(updatedPlans);
     setPlans(updatedPlans);
-    setSelectedPlan(updatedPlans.filter((plan) => plan.selected));
   }
   return (
     <>
@@ -51,7 +51,11 @@ export default function ChoosePlan() {
                     <div>
                       <h3 className="font-[500] col-2">{plan.name}</h3>
                       <p className="col-start-2">
-                        $ {plan.pricing.monthly} / mo
+                        $ {plan.pricing[billingType as keyof pricingTypes]}/{" "}
+                        {
+                          pricingLabels[billingType as keyof pricingLabelsTypes]
+                            .shortLabel
+                        }
                       </p>
                     </div>
                   </div>

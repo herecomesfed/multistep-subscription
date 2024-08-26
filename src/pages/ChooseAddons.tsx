@@ -3,12 +3,19 @@ import Container from "../components/Container";
 import Heading from "../components/Heading";
 import OptionsContainer from "../components/OptionsContainer";
 
-import { contextTypes, DataContext } from "../context/DataContext";
+import {
+  contextTypes,
+  DataContext,
+  pricingTypes,
+} from "../context/DataContext";
+
+import { pricingLabels, pricingLabelsTypes } from "../data";
 
 export default function ChooseAddons() {
-  const { data, setData } = useContext(DataContext) as {
+  const { data, setData, billingType } = useContext(DataContext) as {
     data: contextTypes["data"];
     setData: contextTypes["setData"];
+    billingType: contextTypes["billingType"];
   };
 
   function handleSelectAddon(name: string) {
@@ -47,7 +54,15 @@ export default function ChooseAddons() {
                   <p>{addon.description}</p>
                 </div>
                 <p>
-                  +<span>{addon.pricing.monthly}</span>/mo
+                  +
+                  <span>
+                    {addon.pricing[billingType as keyof pricingTypes]}
+                  </span>
+                  /{" "}
+                  {
+                    pricingLabels[billingType as keyof pricingLabelsTypes]
+                      .shortLabel
+                  }
                 </p>
               </div>
             </OptionsContainer>
