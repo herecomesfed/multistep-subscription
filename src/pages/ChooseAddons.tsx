@@ -58,7 +58,7 @@ export default function ChooseAddons() {
                   <span>
                     {addon.pricing[billingType as keyof pricingTypes]}
                   </span>
-                  /{" "}
+                  /
                   {
                     pricingLabels[billingType as keyof pricingLabelsTypes]
                       .shortLabel

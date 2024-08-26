@@ -51,7 +51,7 @@ export default function ChoosePlan() {
                     <div>
                       <h3 className="font-[500] col-2">{plan.name}</h3>
                       <p className="col-start-2">
-                        $ {plan.pricing[billingType as keyof pricingTypes]}/{" "}
+                        $ {plan.pricing[billingType as keyof pricingTypes]}/
                         {
                           pricingLabels[billingType as keyof pricingLabelsTypes]
                             .shortLabel

@@ -23,8 +23,10 @@ export default function Checkout() {
 
   // Create Total pricing variable
   const totalPrice = [
-    selectedPlan.pricing.monthly,
-    ...selectedAddons.map((addon) => addon.pricing.monthly),
+    selectedPlan.pricing[billingType as keyof pricingTypes],
+    ...selectedAddons.map(
+      (addon) => addon.pricing[billingType as keyof pricingTypes]
+    ),
   ].reduce((acc, cur) => acc + cur, 0);
 
   return (
@@ -67,8 +69,17 @@ export default function Checkout() {
                   >
                     <p>{addon.name}</p>
                     <p>
-                      +<span>{addon.pricing.monthly}</span>
-                      <span>/mo</span>
+                      +
+                      <span>
+                        {addon.pricing[billingType as keyof pricingTypes]}
+                      </span>
+                      <span>
+                        /
+                        {
+                          pricingLabels[billingType as keyof pricingTypes]
+                            .shortLabel
+                        }
+                      </span>
                     </p>
                   </li>
                 );
@@ -78,8 +89,10 @@ export default function Checkout() {
         <div className="flex justify-between items-center text-sm p-5">
           <p>Total per month</p>
           <p>
-            {totalPrice}
-            <span>/mo</span>
+            {totalPrice}/
+            <span>
+              {pricingLabels[billingType as keyof pricingTypes].shortLabel}
+            </span>
           </p>
         </div>
       </Container>
