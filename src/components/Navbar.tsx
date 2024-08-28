@@ -32,7 +32,7 @@ export default function Navbar({ stages }: { stages: StageTypes[] }) {
                   {stage.id}
                 </span>
               </div>
-              <div>
+              <div className="hidden md:block">
                 <p className="text-xs uppercase">Step {stage.id}</p>
                 <h3 className="uppercase text-white font-bold">
                   {stage.label}

@@ -23,18 +23,6 @@ export interface addonsDataTypes {
   selected: boolean;
 }
 
-// Pricing Labels Types
-// export interface pricingLabelsTypes {
-//   monthly: {
-//     shortLabel: string;
-//     longLabel: string;
-//   };
-//   yearly: {
-//     shortLabel: string;
-//     longLabel: string;
-//   };
-// }
-
 // Plans Pricing Types for bracket notation
 export interface pricingTypes {
   monthly: number;
@@ -53,6 +41,8 @@ export interface contextTypes {
   setBillingType: React.Dispatch<React.SetStateAction<string>>;
   isChecked: boolean;
   setIsChecked: React.Dispatch<React.SetStateAction<boolean>>;
+  isConfirmed: boolean;
+  setIsConfirmed: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const DataContext = createContext<contextTypes | null>(null);
@@ -71,8 +61,12 @@ function DataProvider({ children }: { children: ReactNode }) {
   // 2. Yearly
 
   const [billingType, setBillingType] = useState("monthly");
+
   // BillingType Checkbox Control Value
   const [isChecked, setIsChecked] = useState(false);
+
+  // Order confirmation
+  const [isConfirmed, setIsConfirmed] = useState(false);
 
   return (
     <DataContext.Provider
@@ -87,6 +81,8 @@ function DataProvider({ children }: { children: ReactNode }) {
         setBillingType,
         isChecked,
         setIsChecked,
+        isConfirmed,
+        setIsConfirmed,
       }}
     >
       {children}
