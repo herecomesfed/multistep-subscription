@@ -1,3 +1,7 @@
+import iconArcade from "./assets/icon-arcade.svg";
+import iconAdvanced from "./assets/icon-advanced.svg";
+import iconPro from "./assets/icon-pro.svg";
+
 export const plansData = [
   {
     name: "Arcade",
@@ -5,7 +9,7 @@ export const plansData = [
       monthly: 9,
       yearly: 90,
     },
-    icon: "./src/assets/icon-arcade.svg",
+    icon: iconArcade,
     selected: true,
   },
   {
@@ -14,7 +18,7 @@ export const plansData = [
       monthly: 12,
       yearly: 120,
     },
-    icon: "./src/assets/icon-advanced.svg",
+    icon: iconAdvanced,
     selected: false,
   },
   {
@@ -23,7 +27,7 @@ export const plansData = [
       monthly: 15,
       yearly: 150,
     },
-    icon: "./src/assets/icon-pro.svg",
+    icon: iconPro,
     selected: false,
   },
 ];
