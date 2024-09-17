@@ -17,7 +17,13 @@ export default function Navbar({ stages }: { stages: StageTypes[] }) {
   }
   return (
     <div
-      className={`mx-breakout md:clean-breakout py-16 md:rounded-lg bg-[url('src/assets/bg-sidebar-mobile.svg')] md:bg-[url('src/assets/bg-sidebar-desktop.svg')] bg-center bg-no-repeat bg-cover`}
+      style={
+        {
+          "--bg-mobile": `url(${bgSidebarMobile})`,
+          "--bg-desktop": `url(${bgSidebarDesktop})`,
+        } as React.CSSProperties
+      }
+      className={`mx-breakout md:clean-breakout py-16 md:rounded-lg bg-[image:var(--bg-mobile)] md:bg-[image:var(--bg-desktop)] bg-center bg-no-repeat bg-cover`}
     >
       <div className="container w-4/5 mx-auto flex justify-center items-center md:items-start gap-3 md:gap-6 md:flex-col">
         {stages.map((stage: StageTypes) => {
