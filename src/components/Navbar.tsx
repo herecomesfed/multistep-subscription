@@ -1,4 +1,6 @@
 import { useLocation } from "react-router-dom";
+import bgSidebarMobile from "../assets/bg-sidebar-mobile.svg";
+import bgSidebarDesktop from "../assets/bg-sidebar-desktop.svg";
 
 interface StageTypes {
   path: string;
