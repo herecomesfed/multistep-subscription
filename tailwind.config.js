@@ -17,7 +17,8 @@ export default {
       },
     },
     backgroundImage: {
-      "bg-sb-desktop": 'url("./src/assets/bg-sidebar-desktop.svg")',
+      "sidebar-mobile": "url('/assets/bg-sidebar-mobile.svg')",
+      "sidebar-desktop": "url('/assets/bg-sidebar-desktop.svg')",
     },
     fontFamily: {
       sans: ["Ubuntu", "sans-serif"],
