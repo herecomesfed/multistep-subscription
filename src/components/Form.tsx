@@ -32,6 +32,11 @@ export default function Form() {
               value={formValues[element.name as keyof formValuesTypes]}
               onChange={handleSetValues}
             />
+            {element.error && (
+              <small className="text-strawberry-red">
+                {element.errorMessage}
+              </small>
+            )}
           </label>
         );
       })}
